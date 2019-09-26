@@ -30,5 +30,5 @@ TEST(PointTests, TEST_DISTANCE) {
     Point p2(p2Values);
 
     p1.setDistToQuery(p2);
-    ASSERT_FLOAT_EQ(p1.distToQuery, 1.0);
+    ASSERT_DOUBLE_EQ(p1.distToQuery, 1.0);
 }

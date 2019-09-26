@@ -86,22 +86,24 @@ More information about testing is provided further below in this README.
 - (Take a look at the `meson.build` files in the project root, src and test directories to understand how the build process works.)
 
 # Testing
-There are 2 ways of running the tests:
+There are 2 ways of running the unit tests (files with `test_` prefix in test folder):
 - `meson test -C build`
 - `ninja -C build test`
 
-Both  of these commands have their own special use cases:
+Both of these commands have their own special use cases:
 - Running a test under GDB
   - `meson test -C build --gdb 'the name of my test'`
-- Running the tests under valgrind
+- Running all the tests under valgrind
   - `meson test -C build --wrapper=valgrind`
-- Compiling a single test
+
+Other than unit tests, there are also testing executables compiled using your code (like main.cpp.executable).
+- Compiling a single testing executable
   - `ninja -C build test/path/file-name.cpp.executable`
 
-If you have already compiled the tests you can of course also run a specific test like so: `./build/test/path/file-name.cpp.executable`
+If you have already compiled testing executable, you can run it like so: `./build/test/path/file-name.cpp.executable`
 
 ## GoogleTest
-The GoogleTest framework allows you write atomic tests for your code without calling that test in a main or fitting it into your existing set of tests. In this assignment, you can add your tests to the `test/bst/test_BST.cpp` and `test/kdt/test_KDT.cpp` files. To write a test, use the `TEST` macro:
+The GoogleTest framework allows you write atomic tests for your code without calling that test in a main or fitting it into your existing set of tests. In this assignment, each file in src folder has a corrsponding test file in the test folder with prefix `test_`. To write a test, use the `TEST` macro:
 ```cpp
 TEST(SuiteName, TestName) {
     // Test code goes here

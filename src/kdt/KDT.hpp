@@ -27,7 +27,7 @@ class KDT {
     // number of dimension of data points
     unsigned int numDim;
 
-    // smallest distance to query point so far
+    // smallest squared distance to query point so far
     double threshold;
 
     unsigned int isize;
@@ -36,10 +36,10 @@ class KDT {
     // current nearest neighbor
     Point nearestNeighbor;
 
-    // EC: (range search) smallest bounding box containing all points
+    // Extra Credit: smallest bounding box containing all points
     vector<pair<double, double>> boundingBox;
 
-    // EC: (range search) result container
+    // Extra Credit: result container
     // (Set during searching, and clear before another search)
     vector<Point> pointsInRange;
 

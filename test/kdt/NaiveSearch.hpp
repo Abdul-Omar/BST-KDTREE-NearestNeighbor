@@ -1,8 +1,5 @@
 /**
- * Naive implementation of nearest neightbor searching,
- * radius searching, range searching and k nearest neightbors searching
- *
- * Author: X. Cai
+ * Naive implementation of nearest neightbor searching and range searching
  */
 
 #ifndef NaiveSearch_hpp
@@ -53,21 +50,6 @@ class NaiveSearch {
         return &nearestNeighbor;
     }
 
-    /** Return a set of points that are within radius distance of the query
-     * point */
-    vector<Point> radiusSearch(Point& queryPoint, double radius) {
-        vector<Point> result;
-
-        // update distToQuery of all points and collect points with in radius
-        for (Point& point : points) {
-            point.setDistToQuery(queryPoint);
-            if (point.distToQuery < radius) {
-                result.push_back(point);
-            }
-        }
-        return result;
-    }
-
     /** Return a set of points that are contained in regionQuery */
     vector<Point> rangeSearch(vector<pair<double, double>>& regionQuery) {
         // simply check each point and see if it is contained in region
@@ -78,19 +60,6 @@ class NaiveSearch {
             }
         }
         return result;
-    }
-
-    /** Find k nearest neighbors of the given query point */
-    vector<Point> findKNearestNeighbors(Point& queryPoint, unsigned int k) {
-        // update distToQuery of all points
-        for (Point& point : points) {
-            point.setDistToQuery(queryPoint);
-        }
-
-        // simply sort all the points based on distance to query point
-        sort(points.begin(), points.end(), compDist);
-        unsigned int resultSize = min(k, (unsigned int)points.size());
-        return vector<Point>(points.begin(), points.begin() + resultSize);
     }
 };
 

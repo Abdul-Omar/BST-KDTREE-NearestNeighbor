@@ -22,7 +22,7 @@ class Point {
     // number of features
     unsigned int numDim;
 
-    // square Euclidean distance to current query point
+    // squared Euclidean distance to current query point
     double distToQuery;
 
     /** Default constructor */
@@ -80,11 +80,12 @@ struct CompareValueAt {
     }
 };
 
-/** The comparator used in sorting points based on distance to query point */
-struct CompareDist {
-    bool operator()(const Point& p1, const Point& p2) {
-        return p1.distToQuery < p2.distToQuery;
-    }
-} compDist;
+// Example of another comparator. When used in sort(), 
+// points will be ordered from small to large distToQurey
+// struct CompareDist {
+//     bool operator()(const Point& p1, const Point& p2) {
+//         return p1.distToQuery < p2.distToQuery;
+//     }
+// } compDist;
 
 #endif /* Point_hpp */

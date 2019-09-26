@@ -13,16 +13,6 @@
 using namespace std;
 using namespace testing;
 
-TEST(PointTest, TEST_POINT) {
-    Point p1({1.0, 2.0});
-    Point p2({0.0, 4.0});
-    p1.setDistToQuery(p2);
-    ASSERT_DOUBLE_EQ(p1.distToQuery, 5.0);
-    ASSERT_DOUBLE_EQ(p1.valueAt(0), 1.0);
-    ASSERT_FALSE(p1 == p2);
-    ASSERT_TRUE(p1 != p2);
-}
-
 /**
  * A simple test fixture from which multiple tests can
  * be written. The structure of the KDT built from this
