@@ -11,7 +11,9 @@ class BSTIterator : public iterator<input_iterator_tag, Data> {
     BSTNode<Data>* curr;
 
   public:
-    /** TODO */
+    /** Constructor that initialize the current BSTNode
+     *  in this BSTIterator.
+     */
     BSTIterator(BSTNode<Data>* curr) : curr(curr) {}
 
     /** Dereference operator. */

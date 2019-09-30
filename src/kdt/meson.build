@@ -1,1 +1,1 @@
-kdt = declare_dependency(include_directories : include_directories('.'), dependencies: bst)
+kdt = declare_dependency(include_directories : include_directories('.'))

@@ -1,6 +1,7 @@
 #ifndef BST_HPP
 #define BST_HPP
 #include <iostream>
+#include <vector>
 #include "BSTIterator.hpp"
 #include "BSTNode.hpp"
 using namespace std;
@@ -52,7 +53,7 @@ class BST {
     iterator end() const { return typename BST<Data>::iterator(0); }
 
     /** TODO */
-    void inorder() const {}
+    vector<Data> inorder() const {}
 
   private:
     /** TODO */

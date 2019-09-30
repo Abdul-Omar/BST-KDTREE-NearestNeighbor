@@ -1,8 +1,6 @@
 /**
  * Test efficiency of KD tree compared to brute force implementation
  * of nearest neightbor searching and range searching
- *
- * To run the tests, type command './efficiencyTest' after compiling.
  */
 
 #include <stdlib.h>
@@ -55,7 +53,7 @@ vector<pair<double, double>> rangeRange(unsigned int numDim, int length,
 }
 
 /** Test the efficiency of kd tree by comparing the runtime to naive search */
-int main(int argc, const char* argv[]) {
+int main() {
     const int NUM_DATA = 5000000;  // number of random Build data
     const int NUM_TEST = 10;       // number of tests
     const int NUM_DIM = 3;         // number of dimension of random data

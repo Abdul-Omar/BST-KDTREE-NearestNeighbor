@@ -33,7 +33,6 @@ bool fileValid(const char* fileName) {
         cout << "The file is empty. \n";
         return false;
     }
-
     in.close();
     return true;
 }

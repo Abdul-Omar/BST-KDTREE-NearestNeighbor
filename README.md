@@ -40,7 +40,7 @@ More information on meson and ninja is provided further below in this README.
 **4. Running executables**
 If you run ls now after compiling, you’d see there is a new directory called `build`. This directory contains the compiled binary executables that you can run. For example, to run main.cpp from the BST portion of the assignment, run the command below from the root folder of your project:
 
-`./build/test/bst/main.cpp.executable my_input_file.txt`
+`./build/test/bst/main.cpp.executable data/actors.txt data/queryActors.txt`
 
 **5. Running unit tests**
 To run your unit tests, in your project root directory, run
@@ -54,6 +54,7 @@ More information about testing is provided further below in this README.
 
 
 ## Getting Started with the Devcontainer
+- ⚠️NOTE: Windows users, when installing Docker it may ask you if you want to configure it for running Windows containers or Linux containers. Choose Linux containers.
 - ⚠️NOTE: Windows users, if you are running Windows Home edition, first read the note below the next item!
 - Download and install Docker Desktop: https://www.docker.com/products/docker-desktop
   - ⚠️NOTE: Docker Desktop for Windows requires the Hyper-V Windows feature which is not available on Home-edition. If you are running Windows Home-edition, install Docker Toolbox instead: https://docs.docker.com/toolbox/toolbox_install_windows/
@@ -74,6 +75,7 @@ More information about testing is provided further below in this README.
 - Open bash in the VSCode Terminal tab:
 ![Bash](images/bash.png "Bash")
   - ℹ️If you don't see a TERMINAL tab in the bottom panel of your screen, hit ``ctrl+` ``
+  - ℹ️If you don't see a "Bash" option in the dropdown, click the plus icon to the right of the dropdown
 - Cool, now you are fully set up to begin developing on the project!
 
 # Building (Compiling And Running Executables)
