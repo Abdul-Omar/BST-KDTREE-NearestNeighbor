@@ -95,30 +95,47 @@ class BST {
         return 0;
     }
 
-    /** TODO */
-    unsigned int size() const { return 0; }
+    /** This function returns the size of the tree */
+    unsigned int size() const { return isize; }
 
     /** TODO */
-    int height() const { return 0; }
+    int height() const { return iheight; }
 
-    /** TODO */
-    bool empty() const { return false; }
+    /** This function checks whether the BST is empty or not */
+    bool empty() const { return root == nullptr; }
 
-    /** TODO */
-    iterator begin() const { return BST::iterator(first(root)); }
+    /** Return an iterator pointing to the first item in the BST. */
+    iterator begin() const { return typename BST::iterator(first(root)); }
 
     /** Return an iterator pointing past the last item in the BST.
      */
     iterator end() const { return typename BST<Data>::iterator(0); }
 
-    /** TODO */
-    vector<Data> inorder() const {}
+    /** this function the inorder traversal of the BST */
+    vector<Data> inorder() const { return inOrderRecur(root); }
 
   private:
-    /** TODO */
-    static BSTNode<Data>* first(BSTNode<Data>* root) { return 0; }
+    /** This function returns the  first(smallest) element in the tree */
+    static BSTNode<Data>* first(BSTNode<Data>* root) {
+        // base case
+        if (!root->left) {
+            return root;
+        }
+        // recursively move left all the way
+        return first(root.left);
+    }
+    Vector<Data> inOrderRecur(BSTNode<Data>* root) {
+        vector<Data> list;  // holds the list of points
 
-    /** TODO */
+        if (!root) return;  // base case
+
+        inOrderRecur(root->left);
+        list.push_back(root->data);
+        inOrderRecur(root->right);
+
+        return list;
+    }
+    /** this function deletes the entire BST tree */
     static void deleteAll(BSTNode<Data>* n) {
         /* Pseudocode:
            if current node is null: return;
@@ -126,6 +143,13 @@ class BST {
            recursively delete right sub-tree
            delete current node
         */
+        if (!n) {
+            return;
+        }
+
+        deleteAll(n->left);   // delete left subtree
+        deleteAll(n->right);  // delete right subtree
+        delete n;             // delete the root
     }
 };
 
