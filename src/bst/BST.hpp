@@ -31,10 +31,69 @@ class BST {
     virtual ~BST() { deleteAll(root); }
 
     /** TODO */
-    virtual bool insert(const Data& item) { return false; }
+    virtual bool insert(const Data& item) {
+        /* empty tree */
+        if (root == nullptr) {
+            root = new BST<Data>(item);
+            return true;
+        }
+
+        BSTNode<Data> current = root;
+        BSTNode<Data> prev = nullptr;  // keeps track where we fell off tree
+        /* traverse tree*/
+        while (current = !nullptr) {
+            // check which side to go and traverse it
+            if (value < current->data) {
+                prev = current;
+                current = current->left;
+            } else if (current->data < item) {
+                prev = current;
+                current = current->right;
+            }
+            // found the node wanted to insert
+            else {
+                return false;
+            }
+        }
+        // pick up from where we fell off tree and check whether to attach it
+        // left or right
+        if (value < prev->data) {
+            prev->left = new BSTNode<Data>(item);
+        }
+
+        else {
+            prev->right = new BSTNode<Data>(item);
+        }
+
+        return true;
+    }
 
     /** TODO */
-    virtual iterator find(const Data& item) const { return 0; }
+    virtual iterator find(const Data& item) const {
+        BSTNode<Data>* current = root;  // start at root
+
+        // check if root has the data being searched
+        if (item == current->data) {
+            return iterator(temp);  // return an iterator pointing to it
+        }
+
+        /* traverse the tree left or right to check */
+        while (current != nullptr) {
+            // check left
+            if (item < current->data) {
+                current = current->left;
+            }
+            // check right
+            else if (current->data < item) {
+                current = current->right;
+            } else {
+                return iterator(temp);
+            }
+            return end();  // iterator past the end
+        }
+
+        return 0;
+    }
 
     /** TODO */
     unsigned int size() const { return 0; }
