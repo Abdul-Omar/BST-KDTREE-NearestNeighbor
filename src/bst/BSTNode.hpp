@@ -17,7 +17,39 @@ class BSTNode {
     BSTNode(const Data& d) : data(d) {}
 
     /** TODO */
-    BSTNode<Data>* successor() { return 0; }
+    BSTNode<Data>* successor() {
+        BSTNode<Data>* succesorr = nullptr;  // holds the successor
+
+        successorr = this;  // start at 'this' node;
+
+        /* no right child to become sucessor
+         * then the successor must be one of its ancestors if it exists
+         */
+        if (!this->right) {
+            // traverse up parents until a node that is left child of its parent
+            // is found
+            while (successorr->parent != nullptr &&
+                   successorr == successor->parent->right) {
+                successor = successorr->parent;
+
+                successorr->parent = successorr->parent->parent;
+            }
+
+            return successorr->parent;
+        }
+
+        // has a right child
+        else {
+            BSTNode<Data>* current = this->right;  // go to right child
+            /* successor is the smallest element in this right child's subtree*/
+            while (current.left != nullptr) {
+                current = current->left;
+            }
+            return current;
+        }
+
+        return nullptr;  // no successor was found;
+    }
 };
 
 /** DO NOT CHANGE THIS METHOD
