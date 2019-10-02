@@ -34,35 +34,49 @@ class BST {
     virtual bool insert(const Data& item) {
         /* empty tree */
         if (root == nullptr) {
-            root = new BST<Data>(item);
+            root = new BSTNode<Data>(item);
+            root->parent = nullptr;// has no parent;
+            isize++;//increment size
+            iheight++;//increment tree height
             return true;
         }
-
+        
+        /* maintain two pointer one following the other*/
         BSTNode<Data> current = root;
         BSTNode<Data> prev = nullptr;  // keeps track where we fell off tree
+        
         /* traverse tree*/
-        while (current = !nullptr) {
+        while (current =! nullptr) {
             // check which side to go and traverse it
             if (value < current->data) {
                 prev = current;
                 current = current->left;
+                iheight++;
             } else if (current->data < item) {
                 prev = current;
                 current = current->right;
+                iheight++;
             }
-            // found the node wanted to insert
+            // node is already there
             else {
                 return false;
             }
         }
-        // pick up from where we fell off tree and check whether to attach it
+        // pick up from where we fell off tree and check whether to attach new node to its
         // left or right
         if (value < prev->data) {
             prev->left = new BSTNode<Data>(item);
+
+            prev->left->parent = parent;//prev is its parent
+            isize++;
         }
 
         else {
             prev->right = new BSTNode<Data>(item);
+
+            prev->right->parent = prev;//prev is its parent;
+            
+            isize++;
         }
 
         return true;
@@ -70,13 +84,14 @@ class BST {
 
     /** TODO */
     virtual iterator find(const Data& item) const {
+        
         BSTNode<Data>* current = root;  // start at root
 
         // check if root has the data being searched
         if (item == current->data) {
-            return iterator(temp);  // return an iterator pointing to it
+            return iterator(current);  // return an iterator pointing to it
         }
-
+         
         /* traverse the tree left or right to check */
         while (current != nullptr) {
             // check left
@@ -86,33 +101,51 @@ class BST {
             // check right
             else if (current->data < item) {
                 current = current->right;
-            } else {
-                return iterator(temp);
+            } 
+            //we have found the node 
+            else {
+                return iterator(current);
             }
-            return end();  // iterator past the end
         }
-
-        return 0;
+        return end();  // could not find, return iterator past the end
     }
 
     /** This function returns the size of the tree */
-    unsigned int size() const { return isize; }
+    unsigned int size() const { 
 
-    /** TODO */
-    int height() const { return iheight; }
+        return isize; 
+    }
+
+    /** This function returns the  height of the tree*/
+    int height() const { 
+        
+        return iheight;
+    }
 
     /** This function checks whether the BST is empty or not */
-    bool empty() const { return root == nullptr; }
+    bool empty() const { 
+        
+        return root == nullptr; 
+    }
 
     /** Return an iterator pointing to the first item in the BST. */
-    iterator begin() const { return typename BST::iterator(first(root)); }
+    iterator begin() const { 
+        
+        return typename BST::iterator(first(root));
+    }
 
     /** Return an iterator pointing past the last item in the BST.
      */
-    iterator end() const { return typename BST<Data>::iterator(0); }
+    iterator end() const { 
+        
+        return typename BST<Data>::iterator(0);
+    }
 
     /** this function the inorder traversal of the BST */
-    vector<Data> inorder() const { return inOrderRecur(root); }
+    vector<Data> inorder() const { 
+        
+        return inOrderRecur(root); 
+    }
 
   private:
     /** This function returns the  first(smallest) element in the tree */
@@ -125,12 +158,15 @@ class BST {
         return first(root.left);
     }
     Vector<Data> inOrderRecur(BSTNode<Data>* root) {
+        
         vector<Data> list;  // holds the list of points
 
         if (!root) return;  // base case
-
+        //visit left of root
         inOrderRecur(root->left);
+        //visit root itself
         list.push_back(root->data);
+        //visit right of root
         inOrderRecur(root->right);
 
         return list;
