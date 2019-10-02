@@ -138,39 +138,36 @@ class KDT {
          }
       }
       else {
-           //if value in current axis is less, points must lie in the left
+           
+           //if value of queryPoint in current axis is less,
+           // nearest neighbor must lie in the left subtree
            if(queryPoint->valueAt(curDim) <= node->point.valueAt(curDim)){
-             
-             if(queryPoint->valueAt(curDim) - threshold <= node->point.valueAt(curDim))
+             //if q.x - node.x is less than threshold
+             if(node->point.setDistToQuery(queryPoint) <= threshold)
               
               findNNHelper(node->left, queryPoint, curDim);
             }
-            if(queryPoitn->valueAt(curDim) + threshold > node->point.valueAt(curDim)){
+            if(node->point.setDistToQuery(queryPoint) > threshold){
 
               findNNHelper(node->right, queryPoint, curDim);
             }
          }
+         //nearest neighbor is in right subtree
          else {
 
-            if(queryPoitn->valueAt(curDim) + threshold > node->point.valueAt(curDim))
+            if(queryPoint->valueAt(curDim) + threshold > node->point.valueAt(curDim))
               
               findNNHelper(node->right, queryPoint, curDim);
             }
-            if(queryPoitn->valueAt(curDim) - threshold <= node->point.valueAt(curDim)){
+            if(queryPoint->valueAt(curDim) - threshold <= node->point.valueAt(curDim)){
 
               findNNHelper(node->left, queryPoint, curDim);
             }
-
-
          }
-     
-
-
-
       }
-
-
     }
+        
+            
 
     /** Extra credit */
     void rangeSearchHelper(KDNode* node, vector<pair<double, double>>& curBB,
