@@ -140,14 +140,14 @@ class KDT {
       else {
            
            //if value of queryPoint in current axis is less,
-           // nearest neighbor must lie in the left subtree
            if(queryPoint->valueAt(curDim) <= node->point.valueAt(curDim)){
              //if q.x - node.x is less than threshold
-             if(node->point.setDistToQuery(queryPoint) <= threshold)
-              
+             if(queryPoint->valueAt(curDim) - node->point.valueAt(curDim) <= threshold){
+              //check left subtree
               findNNHelper(node->left, queryPoint, curDim);
             }
-            if(node->point.setDistToQuery(queryPoint) > threshold){
+            //
+            if(queryPoint->valueAt(curDim)  + threshold > node->point.valueAt(curDim)){
 
               findNNHelper(node->right, queryPoint, curDim);
             }
@@ -159,7 +159,7 @@ class KDT {
               
               findNNHelper(node->right, queryPoint, curDim);
             }
-            if(queryPoint->valueAt(curDim) - threshold <= node->point.valueAt(curDim)){
+            if(queryPoint->valueAt(curDim) - node->point.valueAt(curDim) <= threshold){
 
               findNNHelper(node->left, queryPoint, curDim);
             }
