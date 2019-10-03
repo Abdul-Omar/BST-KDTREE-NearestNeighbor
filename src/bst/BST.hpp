@@ -89,7 +89,7 @@ class BST {
 
         // check if root has the data being searched
         if (item == current->data) {
-            return iterator(current);  // return an iterator pointing to it
+            return BSTNode::iterator(current);  // return an iterator pointing to it
         }
          
         /* traverse the tree left or right to check */
@@ -104,7 +104,7 @@ class BST {
             } 
             //we have found the node 
             else {
-                return iterator(current);
+                return BSTNode::iterator(current);
             }
         }
         return end();  // could not find, return iterator past the end
@@ -131,14 +131,14 @@ class BST {
     /** Return an iterator pointing to the first item in the BST. */
     iterator begin() const { 
         
-        return typename BST::iterator(first(root));
+        return typename BSTNode<Data>::iterator(first(root));
     }
 
     /** Return an iterator pointing past the last item in the BST.
      */
     iterator end() const { 
         
-        return typename BST<Data>::iterator(0);
+        return typename BSTNode<Data>::iterator(0);
     }
 
     /** this function the inorder traversal of the BST */

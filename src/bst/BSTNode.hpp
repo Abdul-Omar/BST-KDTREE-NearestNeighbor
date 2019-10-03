@@ -18,28 +18,29 @@ class BSTNode {
 
     /** TODO */
     BSTNode<Data>* successor() {
-        BSTNode<Data>* succesorr = nullptr;  // holds the successor
-
-        successorr = this;  // start at 'this' node;
+        
+        BSTNode<Data>* current = nullptr;  // holds the successor
 
         /* no right child to become sucessor
          * then the successor must be one of its ancestors if it exists
          */
         if (!this->right) {
+
+            current = this;//start at this node
             // traverse up parents until a node that is left child of its parent
             // is found
-            while (successorr->parent != nullptr &&
-                   successorr == successor->parent->right) {
-                successor = successorr->parent;
-
-                successorr->parent = successorr->parent->parent;
+            while (current->parent != nullptr &&
+                   current == current->parent->right) {
+                
+                current = current->parent;
             }
 
-            return successorr->parent;
+            return current->parent;//return parent of left child
         }
 
         // has a right child
         else {
+          
             BSTNode<Data>* current = this->right;  // go to right child
             /* successor is the smallest element in this right child's subtree*/
             while (current.left != nullptr) {

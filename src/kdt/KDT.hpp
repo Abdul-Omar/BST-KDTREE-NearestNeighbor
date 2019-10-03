@@ -132,9 +132,11 @@ class KDT {
          //if we have found a smaller distance
          if(thresh < threshold){
 
-            //current best guess
+            //current closest point
             nearestNeighbor = node->point;
-            threshold = thresh;//update current best distance
+           
+            //current closest distance
+            threshold = thresh;
          }
       }
       else {
