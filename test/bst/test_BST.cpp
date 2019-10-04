@@ -58,60 +58,39 @@ TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
     ASSERT_FALSE(bst.insert(3));
 }
 
-TEST_F(SmallBSTFixture, FIND_TEST_NOTFOUND) {  
-
-  ASSERT_EQ(bst.find(7), bst.end());//not found
-
-
+TEST_F(SmallBSTFixture, FIND_TEST_NOTFOUND) {
+    ASSERT_EQ(bst.find(7), bst.end());  // not found
 }
-/*TEST_F(SmallBSTFixture, FIND_TEST_FOUND) {  
+/*TEST_F(SmallBSTFixture, FIND_TEST_FOUND) {
 
   ASSERT_EQ(bst.find(-33), bst.first());//found
 
 }*/
 
-TEST_F(SmallBSTFixture, HEIGHT_TEST) {  
+TEST_F(SmallBSTFixture, HEIGHT_TEST) { ASSERT_EQ(bst.height(), 2); }
 
-  ASSERT_EQ(bst.height(), 2);
+/*TEST_F(SmallBSTFixture, EMPTY_TREE_TEST) {
 
-}
-
-/*TEST_F(SmallBSTFixture, EMPTY_TREE_TEST) {  
-  
   bst = nullptr;
   ASSERT_EQ(bst.empty(), true);//empty tree
 
 }*/
 
-TEST_F(SmallBSTFixture, INORDER_TEST) {  
-  vector<int> data = { -33, 1, 3, 4, 100};
+TEST_F(SmallBSTFixture, INORDER_TEST) {
+    vector<int> data = {-33, 1, 3, 4, 100};
 
-  ASSERT_EQ(bst.inorder(), data);//
-
+    ASSERT_EQ(bst.inorder(), data);  //
 }
 
-/*TEST_F(SmallBSTFixture, DELETE_ALL) {  
+/*TEST_F(SmallBSTFixture, DELETE_ALL) {
 
-  
+
   ASSERT_EQ(bst.empty(), true);
 }
 */
-/*TEST_F(SmallBSTFixture, FIRST_TEST) {  
-  
+/*TEST_F(SmallBSTFixture, FIRST_TEST) {
+
   BSTNode<int>* firstt = bst.);
   ASSERT_EQ(firstt->data, -33);
 
 }*/
-
-
-
-
-
-
-
-
-
-
-
-
-

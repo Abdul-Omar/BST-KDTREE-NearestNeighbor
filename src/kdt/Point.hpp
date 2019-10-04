@@ -80,7 +80,7 @@ struct CompareValueAt {
     }
 };
 
-// Example of another comparator. When used in sort(), 
+// Example of another comparator. When used in sort(),
 // points will be ordered from small to large distToQurey
 // struct CompareDist {
 //     bool operator()(const Point& p1, const Point& p2) {

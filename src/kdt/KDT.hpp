@@ -57,30 +57,22 @@ class KDT {
 
     /** TODO */
     void build(vector<Point>& points) {
-
-      unsinged int size = points->size();
-     //if there is only one point
-      if(size == 1) {         
-        root = new KDNode(points);
-        isize++;
-        iheight++;
-        return;
-      }
-      //else recursively build tree
-      root = buildSubtree(points, 0, size, 0, 0);
+        unsigned int size = points.size();
+        // if there is only one point
+        if (size == 1) {
+            root = new KDNode(points[0]);
+            isize++;
+            iheight++;
+            return;
+        }
+        // else recursively build tree
+        root = buildSubtree(points, 0, size, 0, 0);
     }
 
     /** TODO */
-    Point* findNearestNeighbor(Point& queryPoint) { 
-      
-      findNNHelper(root, queryPoint,0)
-      
-      
-      
-      
-       
-       
-   }
+    Point* findNearestNeighbor(Point& queryPoint) {
+        findNNHelper(root, queryPoint, 0);
+    }
 
     /** Extra credit */
     vector<Point> rangeSearch(vector<pair<double, double>>& queryRegion) {
@@ -97,79 +89,74 @@ class KDT {
     /** TODO */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-      
-      unsigned int middle = (start + end)/2;
-      //base case
-      if(start >= end){
-        return;
-      }
-      //get current dimension for sorting
-      curDim = height % points[0].numDim;
+        unsigned int middle = (start + end) / 2;
+        // base case
+        if (start >= end) {
+            return nullptr;
+        }
+        // get current dimension for sorting
+        curDim = height % points[0].numDim;
 
-      //fil dimension of current evaluation
-      compareValueAt.dimension = curDim;
-     
-      //sort elements at current dimension
-      points.sort(compareValueAt());
-      //this node holds the median point
-      KDNode* node = new KDNode(points[middle]);
-      //everything else goes to its left and right
-      node->left = buildSubtree(points, start, middle, curDim, height + 1);
-      node->right = buildSubtree(points, middle +1, end, curDim, height + 1);
-      isize++;//increment size
-      return node;//pointer to root;
+        // CompareValueAt* comp = new CompareValueAt;
+        // fil dimension of current evaluation
+        // CompareValueAt comp = CompareValueAt(curDim);
+
+        // sort elements at current dimension
+        sort(points.begin(), points.end(), CompareValueAt(curDim));
+
+        // this node holds the median point
+        KDNode* node = new KDNode(points[middle]);
+        // everything else goes to its left and right
+        node->left = buildSubtree(points, start, middle, curDim, height + 1);
+        node->right = buildSubtree(points, middle + 1, end, curDim, height + 1);
+        isize++;      // increment size
+        return node;  // pointer to root;
     }
 
     /** TODO */
     void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
-      /*base case,at leaf node*/
-      if(node->left == nullptr && node->right == nullptr){
-        
-        /*current best distance */
-         node->point.setDistToQuery( queryPoint);
-         double thresh = node->point.result;
-         
-         //if we have found a smaller distance
-         if(thresh < threshold){
+        /*base case,at leaf node*/
+        if (node->left == nullptr && node->right == nullptr) {
+            /*current best distance */
+            node->point.setDistToQuery(queryPoint);
+            double thresh = node->point.distToQuery;
 
-            //current closest point
-            nearestNeighbor = node->point;
-           
-            //current closest distance
-            threshold = thresh;
-         }
-      }
-      else {
-           
-           //if value of queryPoint in current axis is less,
-           if(queryPoint->valueAt(curDim) <= node->point.valueAt(curDim)){
-             //if q.x - node.x is less than threshold
-             if(queryPoint->valueAt(curDim) - node->point.valueAt(curDim) <= threshold){
-              //check left subtree
-              findNNHelper(node->left, queryPoint, curDim);
-            }
-            //
-            if(queryPoint->valueAt(curDim)  + threshold > node->point.valueAt(curDim)){
+            // if we have found a smaller distance
+            if (thresh < threshold) {
+                // current closest point
+                nearestNeighbor = node->point;
 
-              findNNHelper(node->right, queryPoint, curDim);
+                // current closest distance
+                threshold = thresh;
             }
-         }
-         //nearest neighbor is in right subtree
-         else {
+        } else {
+            // if value of queryPoint in current axis is less,
+            if (queryPoint.valueAt(curDim) <= node->point.valueAt(curDim)) {
+                // if q.x - node.x is less than threshold
+                if (queryPoint.valueAt(curDim) - node->point.valueAt(curDim) <=
+                    threshold) {
+                    // check left subtree
+                    findNNHelper(node->left, queryPoint, curDim);
+                }
+                //
+                if (queryPoint.valueAt(curDim) + threshold >
+                    node->point.valueAt(curDim)) {
+                    findNNHelper(node->right, queryPoint, curDim);
+                }
+            }
+            // nearest neighbor is in right subtree
+            else {
+                if (queryPoint.valueAt(curDim) + threshold >
+                    node->point.valueAt(curDim))
 
-            if(queryPoint->valueAt(curDim) + threshold > node->point.valueAt(curDim))
-              
-              findNNHelper(node->right, queryPoint, curDim);
+                    findNNHelper(node->right, queryPoint, curDim);
             }
-            if(queryPoint->valueAt(curDim) - node->point.valueAt(curDim) <= threshold){
-
-              findNNHelper(node->left, queryPoint, curDim);
+            if (queryPoint.valueAt(curDim) - node->point.valueAt(curDim) <=
+                threshold) {
+                findNNHelper(node->left, queryPoint, curDim);
             }
-         }
-      }
+        }
     }
-        
-            
 
     /** Extra credit */
     void rangeSearchHelper(KDNode* node, vector<pair<double, double>>& curBB,
@@ -178,20 +165,19 @@ class KDT {
 
     /** TODO */
     static void deleteAll(KDNode* n) {
-
-       /* Pseudocode:
-           if current node is null: return;
-           recursively delete left sub-tree
-           recursively delete right sub-tree
-           delete current node
-        */
+        /* Pseudocode:
+            if current node is null: return;
+            recursively delete left sub-tree
+            recursively delete right sub-tree
+            delete current node
+         */
         if (!n) {
             return;
         }
 
         deleteAll(n->left);   // delete left subtree
         deleteAll(n->right);  // delete right subtree
-        delete n;             //delete root 
+        delete n;             // delete root
     }
 
     // Add your own helper methods here
