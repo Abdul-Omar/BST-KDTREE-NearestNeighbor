@@ -158,7 +158,8 @@ class BST {
         // recursively move left all the way
         return first(root->left);
     }
-    vector<Data> inOrderRecur(const BSTNode<Data>* root) {
+    vector<Data> inOrderRecur( BSTNode<Data>* root )const {
+	   
         
         vector<Data> list;  // holds the list of points
 
