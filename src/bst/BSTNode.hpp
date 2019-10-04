@@ -14,7 +14,10 @@ class BSTNode {
     Data const data;  // the const Data in this node.
 
     /** TODO */
-    BSTNode(const Data& d) : data(d) {}
+    BSTNode(const Data& d) : data(d) {
+   
+	left = right = parent = nullptr;
+    }
 
     /** TODO */
     BSTNode<Data>* successor() {
@@ -43,7 +46,7 @@ class BSTNode {
           
             BSTNode<Data>* current = this->right;  // go to right child
             /* successor is the smallest element in this right child's subtree*/
-            while (current.left != nullptr) {
+            while (current->left != nullptr) {
                 current = current->left;
             }
             return current;

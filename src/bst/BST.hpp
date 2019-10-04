@@ -42,13 +42,13 @@ class BST {
         }
         
         /* maintain two pointer one following the other*/
-        BSTNode<Data> current = root;
-        BSTNode<Data> prev = nullptr;  // keeps track where we fell off tree
+        BSTNode<Data>* current = root;
+        BSTNode<Data>* prev = nullptr;  // keeps track where we fell off tree
         
         /* traverse tree*/
-        while (current =! nullptr) {
+        while (current != nullptr) {
             // check which side to go and traverse it
-            if (value < current->data) {
+            if (item < current->data) {
                 prev = current;
                 current = current->left;
                 iheight++;
@@ -64,10 +64,10 @@ class BST {
         }
         // pick up from where we fell off tree and check whether to attach new node to its
         // left or right
-        if (value < prev->data) {
+        if (item < prev->data) {
             prev->left = new BSTNode<Data>(item);
 
-            prev->left->parent = parent;//prev is its parent
+            prev->left->parent = prev;//prev is its parent
             isize++;
         }
 
@@ -89,7 +89,7 @@ class BST {
 
         // check if root has the data being searched
         if (item == current->data) {
-            return BSTNode::iterator(current);  // return an iterator pointing to it
+            return BST::iterator(current);  // return an iterator pointing to it
         }
          
         /* traverse the tree left or right to check */
@@ -104,7 +104,7 @@ class BST {
             } 
             //we have found the node 
             else {
-                return BSTNode::iterator(current);
+                return BST::iterator(current);
             }
         }
         return end();  // could not find, return iterator past the end
@@ -131,20 +131,21 @@ class BST {
     /** Return an iterator pointing to the first item in the BST. */
     iterator begin() const { 
         
-        return typename BSTNode<Data>::iterator(first(root));
+        return typename BST<Data>::iterator(first(root));
     }
 
     /** Return an iterator pointing past the last item in the BST.
      */
     iterator end() const { 
         
-        return typename BSTNode<Data>::iterator(0);
+        return typename BST<Data>::iterator(0);
     }
 
     /** this function the inorder traversal of the BST */
     vector<Data> inorder() const { 
-        
-        return inOrderRecur(root); 
+       vector<Data> list;
+       list = inOrderRecur(root);
+       return list;
     }
 
   private:
@@ -155,13 +156,13 @@ class BST {
             return root;
         }
         // recursively move left all the way
-        return first(root.left);
+        return first(root->left);
     }
-    Vector<Data> inOrderRecur(BSTNode<Data>* root) {
+    vector<Data> inOrderRecur(const BSTNode<Data>* root) {
         
         vector<Data> list;  // holds the list of points
 
-        if (!root) return;  // base case
+        if (!root) return list;  // base case
         //visit left of root
         inOrderRecur(root->left);
         //visit root itself
