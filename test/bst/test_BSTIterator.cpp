@@ -32,7 +32,7 @@ TEST(BST_ITERATOR_TEST, TEST_ITERATOR_EQUALS) {
      
      BSTIterator<int> iter2(&anotherNode);
    
-    ASSERT_EQ( iter.operator==(&iter2), true);
+    EXPECT_TRUE( iter == iter2);
 
 }
 
@@ -44,7 +44,7 @@ TEST(BST_ITERATOR_TEST, TEST_ITERATOR_NOT_EQUALS) {
      
      BSTIterator<int> iter2(&anotherNode);
    
-    ASSERT_EQ( iter.operator!=(&iter2), false);
+    EXPECT_FALSE( iter != iter2);
 
 }
 
