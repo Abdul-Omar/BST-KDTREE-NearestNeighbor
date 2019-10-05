@@ -2,6 +2,7 @@
 #define BST_HPP
 #include <iostream>
 #include <vector>
+#include<algorithm>
 #include "BSTIterator.hpp"
 #include "BSTNode.hpp"
 using namespace std;
@@ -115,7 +116,7 @@ class BST {
     unsigned int size() const { return isize; }
 
     /** This function returns the  height of the tree*/
-    int height() const { return iheight; }
+    int height() const { return height(root);}
 
     /** This function checks whether the BST is empty or not */
     bool empty() const { return root == nullptr; }
@@ -156,8 +157,14 @@ class BST {
         data.push_back(root->data);
         // visit right of root
         inOrderRecur(root->right, data);}
+    }
 
-       
+    int height (BSTNode<Data>* root)const {  
+	    
+      if(!root) return -1;
+
+      return 1 + max(height(root->left), height(root->right));
+    
     }
     /** this function deletes the entire BST tree */
     static void deleteAll(BSTNode<Data>* n) {

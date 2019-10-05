@@ -44,9 +44,13 @@ TEST(BST_NODE_TESTS, TEST_SUCCESSOR_AGAIN2) {
 
     EXPECT_EQ(node2->data, 11);
 
+    delete(node->left->left);
+    
+    delete(node->left);
 
-    BSTNode<int>* node3 = node2->successor();
-   
-     EXPECT_EQ(node3->data , 14);
+    delete(node->right->right);
 
+    delete(node->right);
+
+    delete(node);
 }
