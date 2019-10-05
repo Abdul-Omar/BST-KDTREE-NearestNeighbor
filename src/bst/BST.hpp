@@ -68,6 +68,7 @@ class BST {
             prev->left = new BSTNode<Data>(item);
 
             prev->left->parent = prev;  // prev is its parent
+	    iheight++;
             isize++;
         }
 
@@ -75,7 +76,8 @@ class BST {
             prev->right = new BSTNode<Data>(item);
 
             prev->right->parent = prev;  // prev is its parent;
-
+            
+	    iheight++;
             isize++;
         }
 
@@ -127,9 +129,11 @@ class BST {
 
     /** this function the inorder traversal of the BST */
     vector<Data> inorder() const {
-        vector<Data> list;
-        list = inOrderRecur(root);
-        return list;
+        vector<Data> data;
+         inOrderRecur(root, data);
+
+	 return data;
+      
     }
 
   private:
@@ -142,18 +146,18 @@ class BST {
         // recursively move left all the way
         return first(root->left);
     }
-    vector<Data> inOrderRecur(BSTNode<Data>* root) const {
-        vector<Data> list;  // holds the list of points
+    void  inOrderRecur(BSTNode<Data>* root, vector<Data>& data) const {
+          // holds the list of points
 
-        if (!root) return list;  // base case
+        if (root){  // base case
         // visit left of root
-        inOrderRecur(root->left);
+        inOrderRecur(root->left, data);
         // visit root itself
-        list.push_back(root->data);
+        data.push_back(root->data);
         // visit right of root
-        inOrderRecur(root->right);
+        inOrderRecur(root->right, data);}
 
-        return list;
+       
     }
     /** this function deletes the entire BST tree */
     static void deleteAll(BSTNode<Data>* n) {

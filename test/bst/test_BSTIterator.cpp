@@ -24,10 +24,11 @@ TEST(BST_ITERATOR_TEST, TEST_ITERATOR_INCREMENT) {
 }
 
 TEST(BST_ITERATOR_TEST, TEST_ITERATOR_EQUALS) {
+    
     BSTNode<int> node(3);
     BSTIterator<int> iter(&node);
 
-    BSTNode<int> anotherNode(3);
+    BSTNode<int>& anotherNode = node;
 
     BSTIterator<int> iter2(&anotherNode);
 
@@ -35,6 +36,7 @@ TEST(BST_ITERATOR_TEST, TEST_ITERATOR_EQUALS) {
 }
 
 TEST(BST_ITERATOR_TEST, TEST_ITERATOR_NOT_EQUALS) {
+   
     BSTNode<int> node(3);
     BSTIterator<int> iter(&node);
 
@@ -42,5 +44,5 @@ TEST(BST_ITERATOR_TEST, TEST_ITERATOR_NOT_EQUALS) {
 
     BSTIterator<int> iter2(&anotherNode);
 
-    EXPECT_FALSE(iter != iter2);
+    EXPECT_TRUE(iter != iter2);
 }

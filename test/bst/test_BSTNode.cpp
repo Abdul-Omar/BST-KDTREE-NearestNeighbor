@@ -28,20 +28,25 @@ TEST(BST_NODE_TESTS, TEST_SUCCESSOR_AGAIN) {
 }
 
 TEST(BST_NODE_TESTS, TEST_SUCCESSOR_AGAIN2) {
-    BSTNode<int> node(10);
+    BSTNode<int>*  node = new BSTNode<int>(10);
 
-    node.left = new BSTNode<int>(7);
-    node.right = new BSTNode<int>(14);
+    node->left = new BSTNode<int>(7);
+    node->right = new BSTNode<int>(14);
 
-    node.left->left = new BSTNode<int>(5);
-    node.left->right = new BSTNode<int>(8);
+    node->left->left = new BSTNode<int>(5);
+    node->left->right = new BSTNode<int>(8);
 
-    node.right->left = new BSTNode<int>(11);
-    node.right->right = new BSTNode<int>(15);
+    node->right->left = new BSTNode<int>(11);
+    node->right->right = new BSTNode<int>(15);
 
-    ASSERT_EQ(node.successor()->data, 11);
 
-    ASSERT_EQ(node.successor()->successor()->data, 14);
+    BSTNode<int>* node2 = node->successor();
 
-    ASSERT_EQ(node.successor()->successor()->successor()->data, 15);
+    EXPECT_EQ(node2->data, 11);
+
+
+    BSTNode<int>* node3 = node2->successor();
+   
+     EXPECT_EQ(node3->data , 14);
+
 }
