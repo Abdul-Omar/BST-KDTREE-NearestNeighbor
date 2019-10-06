@@ -115,9 +115,11 @@ class KDT {
 
     /** TODO */
     void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
-        /*base case,at leaf node*/
-        if (node->left == nullptr && node->right == nullptr) {
-            /*current best distance */
+        
+	/*base case,at leaf node*/
+        if  (node->left == nullptr && node->right == nullptr) {
+           
+	    /*current best distance */
             node->point.setDistToQuery(queryPoint);
             double thresh = node->point.distToQuery;
 

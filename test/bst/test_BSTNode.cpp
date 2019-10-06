@@ -46,7 +46,10 @@ TEST(BST_NODE_TESTS, TEST_SUCCESSOR_AGAIN2) {
 
     delete(node->left->left);
     
+    delete(node->left->right);
     delete(node->left);
+    
+    delete(node->right->left);
 
     delete(node->right->right);
 

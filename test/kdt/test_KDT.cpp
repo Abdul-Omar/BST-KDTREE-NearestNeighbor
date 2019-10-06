@@ -31,13 +31,19 @@ class SmallKDTFixture : public ::testing::Test {
         vec.emplace_back(Point({5.7, 3.2}));
         vec.emplace_back(Point({1.8, 1.9}));
         vec.emplace_back(Point({4.4, 2.2}));
-        kdt.build(vec);
+       
+        vec.emplace_back(Point({7.4, 4.2}));
+       
+        vec.emplace_back(Point({5.1, 6.1}));
+	
+        vec.emplace_back(Point({1.4, 3.3}));
+	kdt.build(vec);
     }
 };
 
 TEST_F(SmallKDTFixture, TEST_SIZE) {
     // Assert that the kd tree has the correct size
-    ASSERT_EQ(kdt.size(), 5);
+    ASSERT_EQ(kdt.size(), 8);
 }
 
 TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
@@ -47,3 +53,16 @@ TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
     Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
     ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
 }
+
+TEST_F(SmallKDTFixture, TEST_NEAREST_POINT2) {
+    NaiveSearch naiveSearch;
+    naiveSearch.build(vec);
+    Point queryPoint({2.5, 3.2});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+}
+
+
+
+
+
