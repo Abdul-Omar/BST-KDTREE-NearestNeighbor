@@ -1,3 +1,13 @@
+/*
+ *  Filename: BSTIterator.hpp
+ *  Author: Abdikhalik Ahmed/Andrew Masters
+ *  UserId: 
+ *  Date: 10/4/2019
+ *  Sources of help:TextBook
+*/
+
+
+
 #ifndef BSTITERATOR_HPP
 #define BSTITERATOR_HPP
 #include <iterator>

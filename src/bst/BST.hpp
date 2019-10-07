@@ -1,3 +1,12 @@
+/*
+ *  Filename: BST.hpp
+ *  Author: Abdikhalik Ahmed/Andrew Masters
+ *  UserId: 
+ *  Date: 10/4/2019
+ *  Sources of help:TextBook
+*/
+
+
 #ifndef BST_HPP
 #define BST_HPP
 #include <iostream>
@@ -28,10 +37,17 @@ class BST {
      */
     BST() : root(0), isize(0), iheight(-1) {}
 
-    /** TODO */
+    /*destructor for the class */
     virtual ~BST() { deleteAll(root); }
 
-    /** TODO */
+     /*
+    * Function Name: insert()
+    * Function Prototype: virtual bool insert(const Data& item) 
+    * Description: this function inserts a new node in the BST
+    * Parameters:
+                item: the data of the node to be inserted
+    * Return Value: true or false whether node was successfuly inserted
+    */
     virtual bool insert(const Data& item) {
         /* empty tree */
         if (root == nullptr) {
@@ -130,10 +146,11 @@ class BST {
 
     /** this function the inorder traversal of the BST */
     vector<Data> inorder() const {
-        vector<Data> data;
-         inOrderRecur(root, data);
+        vector<Data> data;//holds the nodes of the tree
+        //call recursive function for inorder traversal
+        inOrderRecur(root, data);
 
-	 return data;
+	    return data;
       
     }
 
@@ -166,7 +183,14 @@ class BST {
       return 1 + max(height(root->left), height(root->right));
     
     }
-    /** this function deletes the entire BST tree */
+     /*
+    * Function Name: deleteAll()
+    * Function Prototype:static void deleteAll(KDNode* n) ;
+    * Description: this function deletes all nodes in the tree
+    * Parameters:
+                n:  the root of the tree to delete
+    * Return Value: NONE
+    */
     static void deleteAll(BSTNode<Data>* n) {
         /* Pseudocode:
            if current node is null: return;

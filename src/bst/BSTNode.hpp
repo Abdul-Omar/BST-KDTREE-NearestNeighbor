@@ -1,3 +1,12 @@
+/*
+ *  Filename: BSTNode.hpp
+ *  Author: Abdikhalik Ahmed/Andrew Masters
+ *  UserId: 
+ *  Date: 10/4/2019
+ *  Sources of help:TextBook
+*/
+
+
 #ifndef BSTNODE_HPP
 #define BSTNODE_HPP
 #include <iomanip>
@@ -13,10 +22,16 @@ class BSTNode {
     BSTNode<Data>* parent;
     Data const data;  // the const Data in this node.
 
-    /** TODO */
+    /** constructor for the class that initializes members*/
     BSTNode(const Data& d) : data(d) { left = right = parent = nullptr; }
+ /*
+    * Function Name: successor()
+    * Function Prototype:successor();
+    * Description: this function the successor of 'this'node.
+    * Parameters: NONE
 
-    /** TODO */
+    * Return Value: returns Successor of this node
+    */
     BSTNode<Data>* successor() {
         BSTNode<Data>* current = nullptr;  // holds the successor
 

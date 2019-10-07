@@ -1,3 +1,13 @@
+/*
+ *  Filename: KDT.hpp
+ *  Author: Abdikhalik Ahmed/Andrew Masters
+ *  UserId: 
+ *  Date: 10/4/2019
+ *  Sources of help:TextBook
+*/
+
+
+
 #ifndef KDT_HPP
 #define KDT_HPP
 
@@ -55,7 +65,15 @@ class KDT {
     /** Destructor of KD tree */
     virtual ~KDT() { deleteAll(root); }
 
-    /** TODO */
+    /*
+    * Function Name: build()
+    * Function Prototype:build(vector<Point>& points);
+    * Description: this is a wrapper function that calls buildSubtree()
+    * which builds the KD-tree by repeatedly sorting points on current Dimension   
+    * Parameters:
+                points: vector of multi_dimensinal points to build the tree
+    * Return Value: NONE
+    */
     void build(vector<Point>& points) {
         unsigned int size = points.size();
         // if there is only one point
@@ -69,11 +87,20 @@ class KDT {
         root = buildSubtree(points, 0, size, 0, 0);
     }
 
-    /** TODO */
+    /*
+    * Function Name: findNearestNeighbor()
+    * Function Prototype:findNearestNeighbor(Point& queryPoint);
+    * Description: this function finds the nearest closest point to queryPoint  
+    * Parameters:
+                 queryPoint: the point whose closest points in the
+                 tree we are trying to find
+
+    * Return Value: return the closest point;
+    */
     Point* findNearestNeighbor(Point& queryPoint) {
         findNNHelper(root, queryPoint, 0);
 
-	return &nearestNeighbor;
+	    return &nearestNeighbor;
     }
 
     /** Extra credit */
@@ -81,14 +108,41 @@ class KDT {
         return {};
     }
 
-    /** TODO */
+     /*
+    * Function Name: size()
+    * Function Prototype:size();
+    * Description: this function returns the number of elements in the tree
+    * Parameters: NONE
+
+    * Return Value: size of tree
+    */
     unsigned int size() const { return isize; }
 
-    /** TODO */
+     /*
+    * Function Name: height()
+    * Function Prototype:height();
+    * Description: this function returns height of the tree
+
+    * Return Value: height of tree
+    */
     int height() const { return iheight; }
 
   private:
-    /** TODO */
+    /*
+    * Function Name: buildSubtree()
+    * Function Prototype:KDNode* buildSubtree(vector<Point>& points, unsigned int start,
+                         unsigned int end, unsigned int curDim, int height)
+    * Description: this function recursively builds the KD tree by repeatedly sorting
+    *              points on the current dimension of comparison  
+    * Parameters:
+                 points: vector holding points to construct tree with
+                 start:  the position of the point to start sorting from
+                 end:     the  position of the point to end sorting at
+                 curDim:   the current axis of comparison
+                 height:    the current height of the tree
+
+    * Return Value: return root node of the tree
+    */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
         unsigned int middle = (start + end) / 2;
@@ -115,7 +169,20 @@ class KDT {
         return node;  // pointer to root;
     }
 
-   
+    /*
+    * Function Name: nearest neighbor()
+    * Function Prototype:  void nearestNeighborr(KDNode* node, Point& queryPoint, 
+                                   unsigned int curDim, int height)
+    * Description: this function finds the closest point in the tree to queryPoint 
+    * Parameters:
+                 node: root of the tree
+                 queryPoint: the point whose closest we are finding
+                 curDim:   the current axis of comparison
+                 height: the current height of the tree
+                 
+
+    * Return Value: NONE
+    */
     void nearestNeighborr(KDNode* node, Point& queryPoint, unsigned int curDim, int height) {  
     
         if(!node) return; 
@@ -150,7 +217,7 @@ class KDT {
                     nearestNeighborr(node->right, queryPoint, curDim, height + 1);
                 }
             }
-            // nearest neighbor is in right subtree
+            
             else {
                
 	        if (queryPoint.valueAt(curDim) + threshold >  node->point.valueAt(curDim)){
@@ -166,7 +233,16 @@ class KDT {
       }
 
 
-    /** TODO */
+     /*
+    * Function Name: findNNHelper()
+    * Function Prototype:  (KDNode* node, Point& queryPoint, unsigned int curDim)
+    * Description: this function is a helper method of findNearestNeighbor function  
+    * Parameters:
+                 node: root of the tree
+                 queryPoint: the point whose closest we are finding
+                 curDim:   the current axis of comparisonnnnn                
+    * Return Value: NONE
+    */
     void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
         
            nearestNeighborr(node, queryPoint, curDim, -1);
@@ -180,7 +256,14 @@ class KDT {
                            vector<pair<double, double>>& queryRegion,
                            unsigned int curDim) {}
 
-    /** TODO */
+    /*
+    * Function Name: deleteAll()
+    * Function Prototype:static void deleteAll(KDNode* n) ;
+    * Description: this function deletes all nodes in the tree
+    * Parameters:
+                n:  the root of the tree to delete
+    * Return Value: NONE
+    */
     static void deleteAll(KDNode* n) {
         /* Pseudocode:
             if current node is null: return;
