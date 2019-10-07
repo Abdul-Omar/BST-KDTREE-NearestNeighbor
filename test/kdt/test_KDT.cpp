@@ -62,6 +62,22 @@ TEST_F(SmallKDTFixture, TEST_NEAREST_POINT2) {
     ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
 }
 
+TEST_F(SmallKDTFixture, TEST_NEAREST_POINT3) {
+    NaiveSearch naiveSearch;
+    naiveSearch.build(vec);
+    Point queryPoint({1.5, 3.0});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+}
+
+
+TEST_F(SmallKDTFixture, TEST_NEAREST_POINT4) {
+    NaiveSearch naiveSearch;
+    naiveSearch.build(vec);
+    Point queryPoint({1.2, 2.8});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+}
 
 
 

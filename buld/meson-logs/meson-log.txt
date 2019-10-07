@@ -1,0 +1,85 @@
+Build started at 2019-10-07T14:03:37.046079
+Main binary: /acsnfs3/software/python-3.6.2/bin/python3.6
+Python system: Linux
+The Meson build system
+Version: 0.51.2
+Source dir: /home/linux/ieng6/oce/6p/aahmed/pa7/cse100-pa1
+Build dir: /home/linux/ieng6/oce/6p/aahmed/pa7/cse100-pa1/buld
+Build type: native build
+Project name: pa1_bst_kdt
+Project version: 0.0.1
+No CXXFLAGS in the environment, not changing global flags.
+No LDFLAGS in the environment, not changing global flags.
+No CPPFLAGS in the environment, not changing global flags.
+Sanity testing C++ compiler: c++
+Is cross compiler: False.
+Sanity check compiler command line: c++ -pipe -D_FILE_OFFSET_BITS=64 /home/linux/ieng6/oce/6p/aahmed/pa7/cse100-pa1/buld/meson-private/sanitycheckcpp.cc -o /home/linux/ieng6/oce/6p/aahmed/pa7/cse100-pa1/buld/meson-private/sanitycheckcpp.exe
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/linux/ieng6/oce/6p/aahmed/pa7/cse100-pa1/buld/meson-private/sanitycheckcpp.exe
+No CXXFLAGS in the environment, not changing global flags.
+No LDFLAGS in the environment, not changing global flags.
+No CPPFLAGS in the environment, not changing global flags.
+Sanity testing C++ compiler: c++
+Is cross compiler: False.
+Sanity check compiler command line: c++ -pipe -D_FILE_OFFSET_BITS=64 /home/linux/ieng6/oce/6p/aahmed/pa7/cse100-pa1/buld/meson-private/sanitycheckcpp.cc -o /home/linux/ieng6/oce/6p/aahmed/pa7/cse100-pa1/buld/meson-private/sanitycheckcpp.exe
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/linux/ieng6/oce/6p/aahmed/pa7/cse100-pa1/buld/meson-private/sanitycheckcpp.exe
+C++ compiler for the host machine: c++ (gcc 7.3.1 "c++ (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)")
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Downloading gtest source from https://github.com/google/googletest/archive/release-1.8.1.zip
+Downloading gtest patch from https://wrapdb.mesonbuild.com/v1/projects/gtest/1.8.1/1/get_zip
+
+Executing subproject gtest method meson 
+
+Project name: gtest
+Project version: 1.8.1
+C++ compiler for the host machine: c++ (gcc 7.3.1 "c++ (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)")
+Run-time dependency threads found: YES 
+Dependency threads found: YES (cached)
+Dependency threads found: YES (cached)
+Dependency threads found: YES (cached)
+Build targets in project: 0
+Subproject gtest finished.
+
+Adding test "my BSTNode test"
+Adding test "my BSTIterator test"
+Adding test "my BST test"
+Adding test "my Point test"
+Adding test "my KDT test"
+Build targets in project: 11
+Found ninja-1.9.0.git.kitware.dyndep-1.jobserver-1 at /acsnfs3/software/python-3.6.2/bin/ninja
+Running compile:
+Working directory:  /tmp/tmpayq7m2fd
+Command line:  c++ /tmp/tmpayq7m2fd/testfile.cpp -o /tmp/tmpayq7m2fd/output.obj -pipe -D_FILE_OFFSET_BITS=64 -c -std=c++14 
+
+Code:
+ int i = static_cast<int>(0);
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler accepts -std=c++14: YES
+Running compile:
+Working directory:  /tmp/tmpmtgwqjge
+Command line:  c++ /tmp/tmpmtgwqjge/testfile.cpp -o /tmp/tmpmtgwqjge/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
+
+Code:
+ 
+Compiler stdout:
+ install: /opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/
+programs: =/opt/rh/devtoolset-7/root/usr/libexec/gcc/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/libexec/gcc/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/libexec/gcc/x86_64-redhat-linux/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/bin/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/bin/
+libraries: =/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/lib/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/lib/../lib64/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/:/lib/x86_64-redhat-linux/7/:/lib/../lib64/:/usr/lib/x86_64-redhat-linux/7/:/usr/lib/../lib64/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/lib/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../:/lib/:/usr/lib/
+
+Compiler stderr:
+ 

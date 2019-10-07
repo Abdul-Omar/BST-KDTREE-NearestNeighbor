@@ -103,6 +103,8 @@ class BST {
 
     /** TODO */
     virtual iterator find(const Data& item) const {
+
+	if(!root) return end();
         BSTNode<Data>* current = root;  // start at root
 
         // check if root has the data being searched
@@ -157,6 +159,8 @@ class BST {
   private:
     /** This function returns the  first(smallest) element in the tree */
     static BSTNode<Data>* first(BSTNode<Data>* root) {
+
+	if(!root) return nullptr;
         // base case
         if (!root->left) {
             return root;
