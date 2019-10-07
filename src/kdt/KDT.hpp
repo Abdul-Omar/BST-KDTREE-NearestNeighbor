@@ -162,7 +162,7 @@ class KDT {
         // CompareValueAt comp = CompareValueAt(curDim);
 
         // sort elements at current dimension
-        sort(points.begin(), points.end(), CompareValueAt(curDim));
+        sort(points.begin() + start, points.begin() + end, CompareValueAt(curDim));
 
         // this node holds the median point
         KDNode* node = new KDNode(points[middle]);
@@ -188,6 +188,7 @@ class KDT {
         if(!node) return;//base case
 
 	double distance = 0.0;//the currentBestDistance
+	numDim = node->point.numDim;
 	/*if at leaf node*/
         if  ( (node->left == nullptr &&  node->right == nullptr)) {
            
@@ -210,11 +211,11 @@ class KDT {
                 // if q.x - node.x is less than threshold
                 if (queryPoint.valueAt(curDim) - node->point.valueAt(curDim) <= threshold ){
                     // check left subtree
-                    findNNHelper(node->left, queryPoint, curDim  + 1);
+			findNNHelper(node->left, queryPoint, (curDim  + 1) % numDim);
                 }
                 
                 if (queryPoint.valueAt(curDim) + threshold > node->point.valueAt(curDim)) {
-                    findNNHelper(node->right, queryPoint, curDim + 1);
+                    findNNHelper(node->right, queryPoint, (curDim + 1) % numDim);
                 }
             }
             
@@ -222,10 +223,10 @@ class KDT {
                
 	        if (queryPoint.valueAt(curDim) + threshold >  node->point.valueAt(curDim)){
 
-                    findNNHelper(node->right, queryPoint, curDim + 1);
+                    findNNHelper(node->right, queryPoint, (curDim + 1) % numDim);
                 }
                 if (queryPoint.valueAt(curDim) - node->point.valueAt(curDim) <= threshold ) {
-                  findNNHelper(node->left, queryPoint, curDim + 1);
+                  findNNHelper(node->left, queryPoint, (curDim + 1)% numDim);
                 }
            }
     
