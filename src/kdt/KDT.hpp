@@ -16,6 +16,7 @@
 #include <limits>     // numeric_limits<type>::max()
 #include <vector>     // vector<typename>
 #include "Point.hpp"
+#include <math.h>
 
 using namespace std;
 
@@ -145,7 +146,7 @@ class KDT {
     */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-        unsigned int middle = (start + end) / 2;
+        unsigned int middle =  floor((start + end) / 2);
         // base case
         if (start >= end) {
             return nullptr;
@@ -170,7 +171,7 @@ class KDT {
     }
 
     /*
-    * Function Name: nearest neighbor()
+    * Function Name: nearestNeighborr()
     * Function Prototype:  void nearestNeighborr(KDNode* node, Point& queryPoint, 
                                    unsigned int curDim, int height)
     * Description: this function finds the closest point in the tree to queryPoint 
@@ -178,15 +179,14 @@ class KDT {
                  node: root of the tree
                  queryPoint: the point whose closest we are finding
                  curDim:   the current axis of comparison
-                 height: the current height of the tree
-                 
+                 height: the current height of the tree              
 
     * Return Value: NONE
     */
     void nearestNeighborr(KDNode* node, Point& queryPoint, unsigned int curDim, int height) {  
     
-        if(!node) return; 
-	/*base case,at leaf node*/
+        if(!node) return;
+	/*if at leaf node*/
         if  ( (node->left == nullptr &&  node->right == nullptr)) {
            
 	    /*current best distance */
@@ -207,12 +207,12 @@ class KDT {
             // if value of queryPoint in current axis is less,
             if (queryPoint.valueAt(curDim) <= node->point.valueAt(curDim)) {
                 // if q.x - node.x is less than threshold
-                if (queryPoint.valueAt(curDim) - threshold <= node->point.valueAt(curDim)){
+                if (queryPoint.valueAt(curDim) - sqrt(threshold) <= node->point.valueAt(curDim)){
                     // check left subtree
                     nearestNeighborr(node->left, queryPoint, curDim, height + 1);
                 }
                 
-                if (queryPoint.valueAt(curDim) + threshold >
+                if (queryPoint.valueAt(curDim) + sqrt(threshold) >
                     node->point.valueAt(curDim)) {
                     nearestNeighborr(node->right, queryPoint, curDim, height + 1);
                 }
@@ -220,16 +220,17 @@ class KDT {
             
             else {
                
-	        if (queryPoint.valueAt(curDim) + threshold >  node->point.valueAt(curDim)){
+	        if (queryPoint.valueAt(curDim) + sqrt(threshold) >  node->point.valueAt(curDim)){
 
                     nearestNeighborr(node->right, queryPoint, curDim, height + 1);
                 }
-                if (queryPoint.valueAt(curDim) - threshold  <= node->point.valueAt(curDim)) {
+                if (queryPoint.valueAt(curDim) - sqrt(threshold)  <= node->point.valueAt(curDim)) {
                   nearestNeighborr(node->left, queryPoint, curDim, height + 1);
                 }
            }
     
         }
+	
       }
 
 
@@ -245,7 +246,7 @@ class KDT {
     */
     void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
         
-           nearestNeighborr(node, queryPoint, curDim, -1);
+           nearestNeighborr(node, queryPoint, curDim, 0);
        
   
   
