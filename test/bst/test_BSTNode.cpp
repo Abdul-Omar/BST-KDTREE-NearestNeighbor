@@ -1,3 +1,10 @@
+/*
+ *  Filename: test_BSTNode.cpp
+ *  Author: Abdikhalik Ahmed/Andrew Masters
+ *  UserId: 
+ *  Date: 10/4/2019
+ *  Sources of help:TextBook
+*/
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -10,12 +17,12 @@
 
 using namespace std;
 using namespace testing;
-
+/* test successor */
 TEST(BST_NODE_TESTS, TEST_SUCCESSOR) {
     BSTNode<int> node(3);
     ASSERT_EQ(node.successor(), nullptr);
 }
-
+/* test successor again */
 TEST(BST_NODE_TESTS, TEST_SUCCESSOR_AGAIN) {
     BSTNode<int> node(3);
     node.left = new BSTNode<int>(2);
@@ -26,7 +33,7 @@ TEST(BST_NODE_TESTS, TEST_SUCCESSOR_AGAIN) {
     delete (node.left);
     delete (node.right);
 }
-
+/* test successor one more time */
 TEST(BST_NODE_TESTS, TEST_SUCCESSOR_AGAIN2) {
     BSTNode<int>*  node = new BSTNode<int>(10);
 
@@ -43,7 +50,8 @@ TEST(BST_NODE_TESTS, TEST_SUCCESSOR_AGAIN2) {
     BSTNode<int>* node2 = node->successor();
 
     EXPECT_EQ(node2->data, 11);
-
+    
+    //free memory
     delete(node->left->left);
     
     delete(node->left->right);

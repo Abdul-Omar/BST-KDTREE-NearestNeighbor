@@ -1,4 +1,10 @@
-#include <algorithm>
+/*
+ *  Filename: test_BSTIterator.cpp
+ *  Author: Abdikhalik Ahmed/Andrew Masters
+ *  UserId: 
+ *  Date: 10/4/2019
+ *  Sources of help:TextBook
+*/#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <set>
@@ -11,7 +17,7 @@
 
 using namespace std;
 using namespace testing;
-
+/* test increment operator */
 TEST(BST_ITERATOR_TEST, TEST_ITERATOR_INCREMENT) {
     BSTNode<int> node(3);
     BSTIterator<int> iter(&node);
@@ -22,7 +28,7 @@ TEST(BST_ITERATOR_TEST, TEST_ITERATOR_INCREMENT) {
 
     ASSERT_EQ(iter, nullptr);
 }
-
+/* test == operator */
 TEST(BST_ITERATOR_TEST, TEST_ITERATOR_EQUALS) {
     
     BSTNode<int> node(3);
@@ -34,7 +40,7 @@ TEST(BST_ITERATOR_TEST, TEST_ITERATOR_EQUALS) {
 
     EXPECT_TRUE(iter == iter2);
 }
-
+/* tets != operator */
 TEST(BST_ITERATOR_TEST, TEST_ITERATOR_NOT_EQUALS) {
    
     BSTNode<int> node(3);
