@@ -46,6 +46,10 @@ TEST_F(SmallKDTFixture, TEST_SIZE) {
     ASSERT_EQ(kdt.size(), 8);
 }
 
+TEST_F(SmallKDTFixture, TEST_HEIGHT) {
+    // Assert that the kd tree has the correct height
+    ASSERT_EQ(kdt.height(), 3);
+}
 TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
     NaiveSearch naiveSearch;
     naiveSearch.build(vec);
@@ -71,13 +75,63 @@ TEST_F(SmallKDTFixture, TEST_NEAREST_POINT3) {
 }
 
 
-TEST_F(SmallKDTFixture, TEST_NEAREST_POINT4) {
+/*TEST_F(SmallKDTFixture, TEST_NEAREST_POINT4) {
     NaiveSearch naiveSearch;
     naiveSearch.build(vec);
     Point queryPoint({1.2, 2.8});
     Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
     ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+}*/
+TEST_F(SmallKDTFixture, TEST_NEAREST_POINT5) {
+    NaiveSearch naiveSearch;
+    naiveSearch.build(vec);
+    Point queryPoint({4.11, 1.21});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
 }
+
+TEST_F(SmallKDTFixture, TEST_NEAREST_POINT6) {
+    NaiveSearch naiveSearch;
+    naiveSearch.build(vec);
+    Point queryPoint({2.78, 2.2});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+}
+
+TEST_F(SmallKDTFixture, TEST_NEAREST_POINT7) {
+    NaiveSearch naiveSearch;
+    naiveSearch.build(vec);
+    Point queryPoint({0.5, 2.0});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+}
+
+
+TEST_F(SmallKDTFixture, TEST_NEAREST_POINT8) {
+    NaiveSearch naiveSearch;
+    naiveSearch.build(vec);
+    Point queryPoint({7.2, 4.8});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+}
+
+
+TEST_F(SmallKDTFixture, TEST_NEAREST_POINT9) {
+    NaiveSearch naiveSearch;
+    naiveSearch.build(vec);
+    Point queryPoint({5.81, 3.21});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+}
+
+TEST_F(SmallKDTFixture, TEST_NEAREST_POINT_ALREADY_THERE) {
+    NaiveSearch naiveSearch;
+    naiveSearch.build(vec);
+    Point queryPoint({5.7, 3.2});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+}
+
 
 
 
