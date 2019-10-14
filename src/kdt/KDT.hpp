@@ -191,6 +191,7 @@ class KDT {
         if(!node) return;//base case
 
 	double distance = 0.0;//the currentBestDistance
+	
 	numDim = node->point.numDim;
        
 	/*current distance */
@@ -209,7 +210,7 @@ class KDT {
     
            
        // if value of queryPoint in current axis is less,
-       if (queryPoint.valueAt(curDim) < node->point.valueAt(curDim)) {
+       if (queryPoint.valueAt(curDim) <= node->point.valueAt(curDim)) {
 	 
 	 	 //check left first
          findNNHelper(node->left, queryPoint, ((curDim  + 1) % numDim));
