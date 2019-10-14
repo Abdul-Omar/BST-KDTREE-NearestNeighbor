@@ -216,7 +216,7 @@ class KDT {
          findNNHelper(node->left, queryPoint, ((curDim  + 1) % numDim));
 	 
 	 //check if there is a closer pont on the other side
-	 if (queryPoint.valueAt(curDim) + sqrt(threshold) >= node->point.valueAt(curDim)) {
+	if (queryPoint.valueAt(curDim) + sqrt(threshold) > node->point.valueAt(curDim)) {
 	   
 	   findNNHelper(node->right, queryPoint, ((curDim + 1) % numDim));
 	 }
