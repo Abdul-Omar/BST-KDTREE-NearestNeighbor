@@ -107,10 +107,11 @@ class KDT {
 	return &nearestNeighbor;
     }
 
-    /** Extra credit */
-    vector<Point> rangeSearch(vector<pair<double, double>>& queryRegion) {
-        return {};
-    }
+    /*** Extra credit */
+//    vector<Point> rangeSearch(vector<pair<double, double>>& queryRegion) {
+//        return {};
+//    }
+
 
      /*
     * Function Name: size()
@@ -209,8 +210,12 @@ class KDT {
            
        // if value of queryPoint in current axis is less,
        if (queryPoint.valueAt(curDim) < node->point.valueAt(curDim)) {
-	  //check left first
-         findNNHelper(node->left, queryPoint, ((curDim  + 1) % numDim));
+	 
+	 if(queryPoint.valueAt(curDim) - sqrt(threshold) <= node->point.valueAt(curDim )) {
+
+	 //check left first
+         findNNHelper(node->left, queryPoint, ((curDim  + 1) % numDim));}
+	 
 	 //check if there is a closer pont on the other side
 	 if (queryPoint.valueAt(curDim) + sqrt(threshold) >= node->point.valueAt(curDim)) {
 	   
@@ -219,8 +224,10 @@ class KDT {
        }
     
        else {
-         //check right first
-	 findNNHelper(node->right, queryPoint, (curDim + 1) % numDim);
+         //check if there is a closer pont on the other side
+	 if (queryPoint.valueAt(curDim) + sqrt(threshold) >= node->point.valueAt(curDim)) {
+	       //check right first
+	 findNNHelper(node->right, queryPoint, (curDim + 1) % numDim);}
 	 //check if there might be a point on the other side
 	 if(queryPoint.valueAt(curDim) - sqrt(threshold) <= node->point.valueAt(curDim )) {
 	  
