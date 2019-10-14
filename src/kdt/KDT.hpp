@@ -200,7 +200,7 @@ class KDT {
 	distance = node->point.distToQuery;
 
         // if we have found a smaller distance
-        if (distance <= threshold) {
+        if (distance < threshold) {
 	  // current closest point
 	  nearestNeighbor = node->point;
 
