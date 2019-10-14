@@ -209,9 +209,9 @@ class KDT {
            
        // if value of queryPoint in current axis is less,
        if (queryPoint.valueAt(curDim) < node->point.valueAt(curDim)) {
-
+	  //check left first
          findNNHelper(node->left, queryPoint, ((curDim  + 1) % numDim));
-	
+	 //check if there is a closer pont on the other side
 	 if (queryPoint.valueAt(curDim) + sqrt(threshold) >= node->point.valueAt(curDim)) {
 	   
 	   findNNHelper(node->right, queryPoint, ((curDim + 1) % numDim));
@@ -219,9 +219,9 @@ class KDT {
        }
     
        else {
-       
+         //check right first
 	 findNNHelper(node->right, queryPoint, (curDim + 1) % numDim);
-	
+	 //check if there might be a point on the other side
 	 if(queryPoint.valueAt(curDim) - sqrt(threshold) <= node->point.valueAt(curDim )) {
 	  
 	   findNNHelper(node->left, queryPoint, ((curDim + 1)% numDim));
