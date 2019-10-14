@@ -108,9 +108,9 @@ class KDT {
     }
 
     /*** Extra credit */
-//    vector<Point> rangeSearch(vector<pair<double, double>>& queryRegion) {
-//        return {};
-//    }
+    vector<Point> rangeSearch(vector<pair<double, double>>& queryRegion) {
+       return {};
+    }
 
 
      /*
