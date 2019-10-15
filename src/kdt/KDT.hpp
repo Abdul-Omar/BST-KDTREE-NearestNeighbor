@@ -100,10 +100,11 @@ class KDT {
     * Return Value: return the closest point;
     */
     Point* findNearestNeighbor(Point& queryPoint) {
-        //if(size() == 1) return &(root->point);
+        if(size() == 1) return &(root->point);
 	 
 	findNNHelper(root, queryPoint, 0);
-
+  
+       threshold = numeric_limits<double>::infinity();
 	return &nearestNeighbor;
     }
 
@@ -190,7 +191,7 @@ class KDT {
         
         if(!node) return;//base case
 
-	double distance = 0.0;//the currentBestDistance
+	double distance = 0.0;//the current Distance
 	
 	numDim = node->point.numDim;
 	/*current distance */
