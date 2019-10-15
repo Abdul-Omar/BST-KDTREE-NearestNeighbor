@@ -193,7 +193,6 @@ class KDT {
 	double distance = 0.0;//the currentBestDistance
 	
 	numDim = node->point.numDim;
-       
 	/*current distance */
         node->point.setDistToQuery(queryPoint);
         
@@ -207,8 +206,6 @@ class KDT {
 	  // current closest distance
 	  threshold = distance;
         }
-    
-           
        // if value of queryPoint in current axis is less,
        if (queryPoint.valueAt(curDim) <= node->point.valueAt(curDim)) {
 	 
@@ -216,7 +213,7 @@ class KDT {
          findNNHelper(node->left, queryPoint, ((curDim  + 1) % numDim));
 	 
 	 //check if there is a closer pont on the other side
-	if (queryPoint.valueAt(curDim) + sqrt(threshold) > node->point.valueAt(curDim)) {
+	if (queryPoint.valueAt(curDim) + threshold > node->point.valueAt(curDim)) {
 	   
 	   findNNHelper(node->right, queryPoint, ((curDim + 1) % numDim));
 	 }
@@ -226,12 +223,11 @@ class KDT {
          	 	       //check right first
 	 findNNHelper(node->right, queryPoint, (curDim + 1) % numDim);
 	 //check if there might be a point on the other side
-	 if(queryPoint.valueAt(curDim) - sqrt(threshold) <= node->point.valueAt(curDim )) {
+	 if(queryPoint.valueAt(curDim) - threshold <= node->point.valueAt(curDim )) {
 	  
-	   findNNHelper(node->left, queryPoint, ((curDim + 1)% numDim));
+	   findNNHelper(node->left, queryPoint, ((curDim + 1) % numDim));
 	}
       }
-	
     }
 
     /** Extra credit */
