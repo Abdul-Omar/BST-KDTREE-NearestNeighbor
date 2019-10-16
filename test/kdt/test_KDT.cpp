@@ -20,6 +20,8 @@ using namespace testing;
  * may vary. See test_BST.cpp for more information on
  * test fixtures.
  */
+
+
 class SmallKDTFixture : public ::testing::Test {
   protected:
     vector<Point> vec;
@@ -91,7 +93,7 @@ class ThreeDKDTFixture : public ::testing::Test {
 };
 
 
-/*
+
 TEST_F(SmallKDTFixture, TEST_SIZE) {
     // Assert that the kd tree has the correct size
     ASSERT_EQ(kdt.size(), 8);
@@ -101,7 +103,7 @@ TEST_F(SmallKDTFixture, TEST_HEIGHT) {
     // Assert that the kd tree has the correct height
     ASSERT_EQ(kdt.height(), 3);
 }
-the following tests test the correct of findNearestNeighbor function 
+//the following tests test the correct of findNearestNeighbor function 
 TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
     NaiveSearch naiveSearch;
     naiveSearch.build(vec);
@@ -243,7 +245,7 @@ TEST_F(ThreeDKDTFixture, TEST_NEAREST_POINT_3D) {
     ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
 
 }
-*/
+
 TEST_F(ThreeDKDTFixture, TEST_NEAREST_POINT_3D2) {
     NaiveSearch naiveSearch;
     naiveSearch.build(vec);
@@ -259,7 +261,7 @@ TEST_F(LargeKDTFixture, TEST_NEAREST_POINT_Large) {
     float random = 0.0;
     float random2 = 0.0;
 
-   // for(int i = 0; i < 10; i++){
+    for(int i = 0; i < 10; i++){
    	random = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100));
 	random2 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100));
     	
@@ -268,7 +270,7 @@ TEST_F(LargeKDTFixture, TEST_NEAREST_POINT_Large) {
 	Point * closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
     	ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
 
-    //}
+    }
 
 }
 TEST_F(LargeKDTFixture, TEST_NEAREST_POINT_Large2) {

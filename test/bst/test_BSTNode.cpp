@@ -29,7 +29,7 @@ TEST(BST_NODE_TESTS, TEST_SUCCESSOR_AGAIN) {
     node.right = new BSTNode<int>(4);
 
     ASSERT_EQ(node.successor()->data, 4);
-
+    ASSERT_EQ(nullptr, node.right->successor());
     delete (node.left);
     delete (node.right);
 }

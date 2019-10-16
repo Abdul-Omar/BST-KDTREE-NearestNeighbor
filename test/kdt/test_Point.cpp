@@ -32,3 +32,11 @@ TEST(PointTests, TEST_DISTANCE) {
     p1.setDistToQuery(p2);
     ASSERT_DOUBLE_EQ(p1.distToQuery, 1.0);
 }
+
+
+TEST(PointTests, TEST_LESS_THAN) {
+    vector<double> p1Values{3, 4};
+
+    Point p1(p1Values);
+    cout<< p1;
+}

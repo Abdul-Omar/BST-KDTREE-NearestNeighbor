@@ -82,7 +82,6 @@ class KDT {
         if (size == 1) {
             root = new KDNode(points[0]);
             isize++;
-            iheight++;
             return;
         }
         // else recursively build tree
